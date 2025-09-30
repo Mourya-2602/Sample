@@ -14,7 +14,22 @@ function App() {
     setCount(cnt + 1);
   }
   function submit() {
-    setText(`Your Name Saved: ${name}`);
+    fetch("http://localhost:5000/api/name", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setText(`Your Name Saved: ${name}`);
+        } else {
+          setText("Failed to save name");
+        }
+      })
+      .catch(() => setText("Error connecting to backend"));
   }
   function handleChange(e) {
     setName(e.target.value);

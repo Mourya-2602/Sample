@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose ,{Schema}from "mongoose";
 
-const messageSchema=new Schema({
+const nameSchema=new Schema({
     name: {
     type: String,
     required: [true, 'Name is required'],
@@ -13,5 +13,5 @@ const messageSchema=new Schema({
     default: Date.now
   }
 });
- const Message =mongoose.model("Message",messageSchema);
-export default Message;
+ const Name =mongoose.model("Name",nameSchema);
+export default Name;
